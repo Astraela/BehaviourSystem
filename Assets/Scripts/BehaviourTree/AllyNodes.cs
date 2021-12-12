@@ -39,7 +39,7 @@ namespace AllyNodes{
         GameObject smokeBomb = BlackboardServiceDesk.GetBlackboard("Ally").GetVariable<GameObject>("smokeBomb");
         GameObject player = BlackboardServiceDesk.GetBlackboard("Player").GetVariable<GameObject>("self");
         float cd = 0;
-        float maxCD = 1000;
+        float maxCD = 4;
         GameObject ally = BlackboardServiceDesk.GetBlackboard("Ally").GetVariable<GameObject>("self");
         public ThrowBomb(){}
 
@@ -52,11 +52,11 @@ namespace AllyNodes{
                 //do an animation!!!
                 GameObject newSmokeBomb = GameObject.Instantiate(smokeBomb);
                 newSmokeBomb.transform.position = player.transform.position;
-                GameObject.Destroy(newSmokeBomb,3);
+                GameObject.Destroy(newSmokeBomb,2);
                 cd++;
                 return TaskStatus.Running;
             }else if(cd < maxCD){
-                cd++;
+                cd += Time.deltaTime;
                 return TaskStatus.Running;
             }else{
                 cd = 0;

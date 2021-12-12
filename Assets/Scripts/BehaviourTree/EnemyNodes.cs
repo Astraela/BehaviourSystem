@@ -124,7 +124,7 @@ public class Attack : BaseNode
     GameObject enemy = BlackboardServiceDesk.GetBlackboard("Enemy").GetVariable<GameObject>("self");
     GameObject player = BlackboardServiceDesk.GetBlackboard("Player").GetVariable<GameObject>("self");
     float cd = 0;
-    float maxCD = 400;
+    float maxCD = 4;
     public Attack(){}
 
     public override TaskStatus Run()
@@ -136,7 +136,7 @@ public class Attack : BaseNode
             cd++;
             return TaskStatus.Running;
         }else if(cd < maxCD){
-            cd++;
+            cd += Time.deltaTime;
             return TaskStatus.Running;
         }else{
             cd = 0;
